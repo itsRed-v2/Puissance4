@@ -1,5 +1,7 @@
-from p4.functions import getFirstEmpty
 from p4.utils.token import Token
+from p4.utils.vector import Vector
+
+from p4.functions import getFirstEmpty
 
 class Board:
 	HEIGHT = 6
@@ -7,6 +9,7 @@ class Board:
 
 	def __init__(self, stringRows = None):
 		self.columns = []
+		self.lastToken = None
 		
 		for c in range(Board.WIDTH):
 			column = []
@@ -35,5 +38,6 @@ class Board:
 		row = getFirstEmpty(column)
 		if row != -1:
 			column[row] = token
+			self.lastToken = Vector(columnIndex, row)
 
 		return row

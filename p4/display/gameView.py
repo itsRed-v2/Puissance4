@@ -32,8 +32,13 @@ class View:
 						line += Color.YELLOW
 					case Token.EMPTY:
 						line += Color.GRAY
-
-				line += " O "
+				
+				lastToken = self.board.lastToken
+				if (lastToken != None
+						and lastToken.c == col
+						and lastToken.r == row):
+					line += Color.BOLD + " 0 "
+				else: line += " O "
 				
 			line += Color.RESET + "|"
 			
