@@ -9,7 +9,7 @@ from p4.utils.color import Color
 from p4.display.helpMenu import displayHelp
 from p4.display.gameView import displayGame, displayBoard
 
-from p4.functions import tokenToString
+from p4.functions import getFirstEmpty, tokenToString
 from p4.strikeDetector import detectStrike
 
 board = Board()
@@ -42,7 +42,10 @@ def userInput():
 		value = int(reponse)
 
 		if value < 1 or value > 7:
-			footer = Color.RED + "Nombre invalide: le nombre doit être un entier compris entre 1 et 7"
+			footer = Color.RED + "Il n'y a pas de colonne n°" + reponse
+		elif getFirstEmpty(board.getColumn(value - 1)) == -1:
+			footer = Color.RED + "Cette colonne est pleine!"
+			return value
 		else:
 			return value
 
