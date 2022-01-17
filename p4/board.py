@@ -8,9 +8,9 @@ class Board:
 	def __init__(self, stringRows = None):
 		self.columns = []
 		
-		for c in range(self.WIDTH):
+		for c in range(Board.WIDTH):
 			column = []
-			for l in range(self.HEIGHT):
+			for l in range(Board.HEIGHT):
 
 				if stringRows != None:
 					
@@ -25,7 +25,7 @@ class Board:
 			self.columns.append(column)
 	
 	def getColumn(self, index):
-		if (0 <= index < self.WIDTH):
+		if 0 <= index < Board.WIDTH:
 			return self.columns[index]
 
 	def addToken(self, columnIndex, token):
