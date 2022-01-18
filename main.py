@@ -80,6 +80,4 @@ while playing:
 		view.displayBoard()
 		print(f"\nJoueur {tokenToString(tour)} a gagné!")
 
-	if tour == Token.YELLOW:
-		tour = Token.BLUE
-	else: tour = Token.YELLOW
+	tour = (Token.BLUE if tour == Token.YELLOW else Token.YELLOW)

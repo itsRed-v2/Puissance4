@@ -5,6 +5,12 @@ from p4.utils.token import Token
 
 from p4.functions import tokenToString
 
+tokenColors = {
+	Token.YELLOW: Color.YELLOW,
+	Token.BLUE: Color.BLUE,
+	Token.EMPTY: Color.GRAY
+}
+
 class View:
 	def __init__(self, board):
 		self.board = board
@@ -24,14 +30,8 @@ class View:
 			for col in range(7):
 				line += Color.RESET
 
-				tokenID = self.board.getColumn(col)[row]
-				match tokenID:
-					case Token.BLUE:
-						line += Color.BLUE
-					case Token.YELLOW:
-						line += Color.YELLOW
-					case Token.EMPTY:
-						line += Color.GRAY
+				token = self.board.getColumn(col)[row]
+				line += tokenColors.get(token)
 				
 				lastToken = self.board.lastToken
 				if (lastToken != None

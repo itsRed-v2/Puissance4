@@ -7,10 +7,11 @@ def getFirstEmpty(column):
 			return row
 	return -1
 
+tokenNames = {
+	Token.BLUE: Color.BLUE + "BLEU",
+	Token.YELLOW: Color.YELLOW + "JAUNE",
+	Token.EMPTY: Color.GRAY + "NONE"
+}
+
 def tokenToString(token):
-	if token == Token.BLUE:
-		return Color.BLUE + "BLEU" + Color.RESET
-	elif token == Token.YELLOW:
-		return Color.YELLOW + "JAUNE" + Color.RESET
-	elif token == Token.EMPTY:
-		return Color.GRAY + "NONE" + Color.RESET
+	return tokenNames.get(token) + Color.RESET
