@@ -3,8 +3,6 @@ import os
 from p4.utils.color import Color
 from p4.utils.token import Token
 
-from p4.functions import tokenToString
-
 tokenColors = {
 	Token.YELLOW: Color.YELLOW,
 	Token.BLUE: Color.BLUE,
@@ -44,14 +42,14 @@ class View:
 			
 			print(line)
 
-	def displayGame(self, tourToken):
+	def displayGame(self, playerName):
 		print(Color.RESET)
 
 		size = os.get_terminal_size()
 		for i in range(size.lines - 12):
 			print("")
 
-		print(f"C'est au tour du joueur {tokenToString(tourToken)}")
+		print(f"C'est au tour du joueur {playerName}")
 
 		self.displayBoard()
 
@@ -59,3 +57,14 @@ class View:
 		print("Entrez \"help\" pour de l'aide")
 
 		self.footer = ""
+	
+	def display_win(self, playerName):
+		print(Color.RESET)
+
+		size = os.get_terminal_size()
+		for i in range(size.lines - 13):
+			print("")
+
+		print("\n")
+		self.displayBoard()
+		print(f"\nJoueur {playerName} a gagné!")
