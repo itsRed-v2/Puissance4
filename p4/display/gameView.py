@@ -17,15 +17,15 @@ class View:
 	def displayBoard(self):
 		
 		line = "|" + Color.BOLD
-		for i in range(7):
-			line += f" {i+1} "
+		for i in range(self.board.WIDTH):
+			line += str(i + 1).rjust(2, " ") + " "
 		line += Color.RESET + "|"
 		print(line)
 
-		for row in range(6):
+		for row in range(self.board.HEIGHT):
 			line = Color.RESET + "|"
 
-			for col in range(7):
+			for col in range(self.board.WIDTH):
 				line += Color.RESET
 
 				token = self.board.getColumn(col)[row]

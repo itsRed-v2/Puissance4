@@ -1,3 +1,5 @@
+import sys
+
 from p4.players.IAplayer import IAPlayer
 from p4.players.userPlayer import UserPlayer
 
@@ -11,6 +13,13 @@ from p4.display.gameView import View
 from p4.strikeDetector import detectStrike
 
 board = Board()
+
+if len(sys.argv) == 3:
+	h = sys.argv[1]
+	w = sys.argv[2]
+	
+	if h.isdecimal() and w.isdecimal():
+		board = Board(height = int(h), width = int(w))
 
 view = View(board)
 
@@ -53,6 +62,7 @@ while playing:
 	if not play(IA):
 		print(Color.RED + "AI played wrong!!")
 		playing = False
+		break
 
 	view.displayGame(USER.displayName)
 	play(USER)

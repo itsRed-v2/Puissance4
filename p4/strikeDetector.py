@@ -33,8 +33,8 @@ def lineLength(board, pos, direction, tokenColor):
 	pointer = Vector(pos.c, pos.r)
 	pointer.add(direction)
 	
-	while (0 <= pointer.c < Board.WIDTH
-			and 0 <= pointer.r < Board.HEIGHT
+	while (0 <= pointer.c < board.WIDTH
+			and 0 <= pointer.r < board.HEIGHT
 			and board.getColumn(pointer.c)[pointer.r] == tokenColor):
 
 		strike += 1
