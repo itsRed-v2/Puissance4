@@ -103,7 +103,7 @@ def test_invalid_input():
 
 	answer = player.play(board, mockInput)
 	assert answer == 5
-	assert mockView.footer == Color.RED + "Argument invalide"
+	assert mockView.footer == Color.RED + "Argument invalide: 'blblbl'"
 	assert hook == False
 	mockView.displayGame.assert_called_once()
 

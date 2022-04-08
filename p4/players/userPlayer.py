@@ -12,7 +12,7 @@ class UserPlayer(Player):
 
 	def play(self, board, input = input, displayHelp = displayHelp):
 		while True:
-			reponse = input("-> ")
+			reponse = input("-> ").strip()
 
 			if reponse == "": pass
 
@@ -34,6 +34,6 @@ class UserPlayer(Player):
 					return value
 
 			else:
-				self.view.footer = Color.RED + "Argument invalide"
+				self.view.footer = Color.RED + "Argument invalide: " + repr(reponse)
 			
 			self.view.displayGame(self.displayName)
