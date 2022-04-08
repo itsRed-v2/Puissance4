@@ -43,28 +43,27 @@ class View:
 			print(line)
 
 	def displayGame(self, playerName):
+		header = f"C'est au tour du joueur {playerName}"
+		permFooter = "Entrez \"help\" pour de l'aide"
+		self.display(header, permFooter)
+	
+	def display_win(self, playerName):
+		header = ""
+		permFooter = f"Joueur {playerName} a gagné!"
+		self.display(header, permFooter)
+	
+	def display(self, header, permFooter):
 		print(Color.RESET)
 
 		size = os.get_terminal_size()
-		for i in range(size.lines - 12):
+		for i in range(size.lines - 6 - self.board.HEIGHT):
 			print("")
 
-		print(f"C'est au tour du joueur {playerName}")
+		print(header + Color.RESET)
 
 		self.displayBoard()
 
 		print(self.footer + Color.RESET)
-		print("Entrez \"help\" pour de l'aide")
+		print(permFooter)
 
 		self.footer = ""
-	
-	def display_win(self, playerName):
-		print(Color.RESET)
-
-		size = os.get_terminal_size()
-		for i in range(size.lines - 13):
-			print("")
-
-		print("\n")
-		self.displayBoard()
-		print(f"\nJoueur {playerName} a gagné!")
