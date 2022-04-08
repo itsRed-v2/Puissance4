@@ -14,9 +14,9 @@ class Board:
 
 				if stringRows != None:
 					
-					if stringRows[l][c] == 'O':
+					if stringRows[l][c] == 'B':
 						column.append(Token.BLUE)
-					elif stringRows[l][c] == 'X':
+					elif stringRows[l][c] == 'Y':
 						column.append(Token.YELLOW)
 					else: column.append(Token.EMPTY)
 

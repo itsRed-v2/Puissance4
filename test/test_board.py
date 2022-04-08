@@ -29,44 +29,44 @@ def test_newBoardSized():
 
 def test_newBoardFromString():
 	E = Token.EMPTY
-	O = Token.BLUE
-	X = Token.YELLOW
+	B = Token.BLUE
+	Y = Token.YELLOW
 
 	stringBoard = [
 		"       ",
 		"       ",
 		"    w  ",
-		"     X ",
-		" XO    ",
-		"OOXX O "
+		"     Y ",
+		" YB    ",
+		"BBYY B "
 	]
 	board = Board(stringBoard)
 
-	assert board.getColumn(0) == [E, E, E, E, E, O]
-	assert board.getColumn(1) == [E, E, E, E, X, O]
-	assert board.getColumn(2) == [E, E, E, E, O, X]
-	assert board.getColumn(3) == [E, E, E, E, E, X]
+	assert board.getColumn(0) == [E, E, E, E, E, B]
+	assert board.getColumn(1) == [E, E, E, E, Y, B]
+	assert board.getColumn(2) == [E, E, E, E, B, Y]
+	assert board.getColumn(3) == [E, E, E, E, E, Y]
 	assert board.getColumn(4) == [E, E, E, E, E, E]
-	assert board.getColumn(5) == [E, E, E, X, E, O]
+	assert board.getColumn(5) == [E, E, E, Y, E, B]
 	assert board.getColumn(6) == [E, E, E, E, E, E]
 
 	stringBoard = [
-		"       O",
-		"    O  O",
-		"   .O  X",
-		" XOOO  X",
-		"OOXXXX O"
+		"       B",
+		"    B  B",
+		"   .B  Y",
+		" YBBB  Y",
+		"BBYYYY B"
 	]
 	board = Board(stringBoard, 5, 8)
 
-	assert board.getColumn(0) == [E, E, E, E, O]
-	assert board.getColumn(1) == [E, E, E, X, O]
-	assert board.getColumn(2) == [E, E, E, O, X]
-	assert board.getColumn(3) == [E, E, E, O, X]
-	assert board.getColumn(4) == [E, O, O, O, X]
-	assert board.getColumn(5) == [E, E, E, E, X]
+	assert board.getColumn(0) == [E, E, E, E, B]
+	assert board.getColumn(1) == [E, E, E, Y, B]
+	assert board.getColumn(2) == [E, E, E, B, Y]
+	assert board.getColumn(3) == [E, E, E, B, Y]
+	assert board.getColumn(4) == [E, B, B, B, Y]
+	assert board.getColumn(5) == [E, E, E, E, Y]
 	assert board.getColumn(6) == [E, E, E, E, E]
-	assert board.getColumn(7) == [O, O, X, X, O]
+	assert board.getColumn(7) == [B, B, Y, Y, B]
 
 def test_getColumn():
 	board = Board(height = 21, width = 3)

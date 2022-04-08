@@ -9,8 +9,8 @@ def test_lineLength():
 		"       ",
 		"       ",
 		"       ",
-		" XO    ",
-		"OOXX.  "
+		" YB    ",
+		"BBYY.  "
 	])
 	direction = Vector(-1, 0)
 	pos = Vector(4, 5)
@@ -20,10 +20,10 @@ def test_lineLength():
 	board = Board([
 		"       ",
 		"       ",
-		"    O  ",
-		"   .O  ",
-		" XOOO  ",
-		"OOXXXX "
+		"    B  ",
+		"   .B  ",
+		" YBBB  ",
+		"BBYYYY "
 	])
 	pos = Vector(3, 3)
 	assert lineLength(board, pos, Vector(-1, 1), Token.BLUE) == 2
@@ -35,8 +35,8 @@ def test_isLine():
 		"       ",
 		"       ",
 		"       ",
-		" XO    ",
-		"OOXX.X "
+		" YB    ",
+		"BBYY.Y "
 	])
 	direction = Vector(1, 0)
 	pos = Vector(4, 5)
@@ -46,10 +46,10 @@ def test_isLine():
 	board = Board([
 		"       ",
 		"       ",
-		"    O  ",
-		"   .O  ",
-		" XOOO  ",
-		"OOXXXX "
+		"    B  ",
+		"   .B  ",
+		" YBBB  ",
+		"BBYYYY "
 	])
 	direction = Vector(1, -1)
 	pos = Vector(3, 3)
@@ -62,8 +62,8 @@ def test_is4Strike():
 		"       ",
 		"       ",
 		"       ",
-		" XO    ",
-		"OOXX.X "
+		" YB    ",
+		"BBYY.Y "
 	])
 	pos = Vector(4, 5)
 	assert detectStrike(board, pos, Token.YELLOW) == True
@@ -72,10 +72,10 @@ def test_is4Strike():
 	board = Board([
 		"       ",
 		"       ",
-		"    O  ",
-		"   .O  ",
-		" XOOO  ",
-		"OOXXXX "
+		"    B  ",
+		"   .B  ",
+		" YBBB  ",
+		"BBYYYY "
 	])
 	pos = Vector(3, 3)
 	assert detectStrike(board, pos, Token.BLUE) == True
@@ -83,11 +83,11 @@ def test_is4Strike():
 
 	board = Board([
 		"       ",
-		"O      ",
-		" .OO   ",
-		" XO    ",
-		" X     ",
-		" X  O  "
+		"B      ",
+		" .BB   ",
+		" YB    ",
+		" Y     ",
+		" Y  B  "
 	])
 	pos = Vector(1, 2)
 	assert detectStrike(board, pos, Token.YELLOW) == True

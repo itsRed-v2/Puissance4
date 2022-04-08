@@ -2,12 +2,12 @@ from p4.board import Board
 
 def test_getFirstEmpty():
 	board = Board([
-		"  O",
-		" XX",
-		" OO",
-		" XX",
-		"XXX",
-		"OOO"
+		"  B",
+		" YY",
+		" BB",
+		" YY",
+		"YYY",
+		"BBB"
 	], 6, 3)
 
 	assert board.getFirstEmpty(-1) == None
