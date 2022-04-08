@@ -1,8 +1,6 @@
 from p4.utils.token import Token
 from p4.utils.vector import Vector
 
-from p4.functions import getFirstEmpty
-
 class Board:
 	def __init__(self, stringRows = None, height = 6, width = 7):
 		self.columns = []
@@ -34,9 +32,18 @@ class Board:
 		column = self.getColumn(columnIndex)
 		if column == None: return None
 
-		row = getFirstEmpty(column)
+		row = self.getFirstEmpty(columnIndex)
 		if row != -1:
 			column[row] = token
 			self.lastToken = Vector(columnIndex, row)
 
 		return row
+	
+	def getFirstEmpty(self, columnIndex):
+		column = self.getColumn(columnIndex)
+		if column == None: return None
+
+		for row in range(len(column) - 1, -1, -1): # This ranges from len(column)-1 to 0
+			if column[row] == Token.EMPTY:
+				return row
+		return -1

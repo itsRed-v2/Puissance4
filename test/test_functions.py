@@ -1,33 +1,17 @@
-from p4.utils.token import Token
-from p4.functions import getFirstEmpty
+from p4.board import Board
 
 def test_getFirstEmpty():
-	column = [
-		Token.EMPTY,
-		Token.EMPTY,
-		Token.EMPTY,
-		Token.EMPTY,
-		Token.YELLOW,
-		Token.BLUE
-	]
-	assert getFirstEmpty(column) == 3
+	board = Board([
+		"  O",
+		" XX",
+		" OO",
+		" XX",
+		"XXX",
+		"OOO"
+	], 6, 3)
 
-	column2 = [
-		Token.EMPTY,
-		Token.YELLOW,
-		Token.BLUE,
-		Token.YELLOW,
-		Token.YELLOW,
-		Token.BLUE
-	]
-	assert getFirstEmpty(column2) == 0
-
-	column3 = [
-		Token.BLUE,
-		Token.YELLOW,
-		Token.BLUE,
-		Token.YELLOW,
-		Token.YELLOW,
-		Token.BLUE
-	]
-	assert getFirstEmpty(column3) == -1
+	assert board.getFirstEmpty(-1) == None
+	assert board.getFirstEmpty(0) == 3
+	assert board.getFirstEmpty(1) == 0
+	assert board.getFirstEmpty(2) == -1
+	assert board.getFirstEmpty(3) == None

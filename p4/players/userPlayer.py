@@ -2,7 +2,6 @@ from p4.players.player import Player
 from p4.utils.color import Color
 
 from p4.display.helpMenu import displayHelp
-from p4.functions import getFirstEmpty
 
 class UserPlayer(Player):
 	def __init__(self, token, displayName, view, stopHook):
@@ -28,7 +27,7 @@ class UserPlayer(Player):
 
 				if value < 1 or value > board.WIDTH:
 					self.view.footer = Color.RED + "Il n'y a pas de colonne n°" + reponse
-				elif getFirstEmpty(board.getColumn(value - 1)) == -1:
+				elif board.getFirstEmpty(value - 1) == -1:
 					self.view.footer = Color.RED + "Cette colonne est pleine!"
 				else:
 					return value
