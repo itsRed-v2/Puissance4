@@ -14,3 +14,9 @@ class Vector:
 	def multiply(self, number):
 		self.c *= number
 		self.r *= number
+	
+	def __eq__(self, other): 
+		if not isinstance(other, Vector):
+			return False
+		
+		return self.c == other.c and self.r == other.r

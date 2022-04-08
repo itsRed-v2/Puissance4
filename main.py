@@ -45,8 +45,10 @@ def play(player):
 	if row == -1 or row == None:
 		return False
 
-	if detectStrike(board, Vector(answer - 1, row), player.token):
+	strike = detectStrike(board, Vector(answer - 1, row), player.token)
+	if strike != False:
 		stopGame()
+		view.highlightedPoints = strike
 		view.display_win(player.displayName)
 
 	return True
@@ -62,7 +64,8 @@ while playing:
 	if not play(IA):
 		print(Color.RED + "AI played wrong!!")
 		playing = False
-		break
+
+	if not playing: break
 
 	view.displayGame(USER.displayName)
 	play(USER)

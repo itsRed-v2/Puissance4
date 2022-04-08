@@ -31,3 +31,11 @@ def test_multiply():
 	vec.multiply(-1)
 	assert vec.c == -6
 	assert vec.r == -12
+
+def test_equal():
+	vec1 = Vector(2, 2)
+	vec2 = Vector(2, 2)
+	vec3 = Vector(2, 3)
+
+	assert vec1 == vec2
+	assert vec2 != vec3

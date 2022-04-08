@@ -11,24 +11,27 @@ def detectStrike(board, pos, tokenColor):
 	]
 
 	for direction in directions:
-		if is4Line(board, pos, direction, tokenColor):
-			return True
+		result = is4Line(board, pos, direction, tokenColor)
+		if result != False:
+			return result
 	
 	return False
 
 def is4Line(board, pos, direction, tokenColor):
-	strike = 1
+	points = findLine(board, pos, direction, tokenColor)
+	points.reverse()
 
-	strike += lineLength(board, pos, direction, tokenColor)
+	points.append(Vector(pos.c, pos.r))
+
 	direction.multiply(-1)
-	strike += lineLength(board, pos, direction, tokenColor)
+	points += findLine(board, pos, direction, tokenColor)
 	
-	if strike >= 4:
-		return True
+	if len(points) >= 4:
+		return points
 	return False
 
-def lineLength(board, pos, direction, tokenColor):
-	strike = 0
+def findLine(board, pos, direction, tokenColor):
+	points = []
 
 	pointer = Vector(pos.c, pos.r)
 	pointer.add(direction)
@@ -37,8 +40,8 @@ def lineLength(board, pos, direction, tokenColor):
 			and 0 <= pointer.r < board.HEIGHT
 			and board.getColumn(pointer.c)[pointer.r] == tokenColor):
 
-		strike += 1
+		points.append(Vector(pointer.c, pointer.r))
 
 		pointer.add(direction)
 	
-	return strike
+	return points
