@@ -92,3 +92,44 @@ def test_win():
 
 	assert IA.play(board, mockRandom, False) == 1
 	assert randomRuns == 0
+
+def test_block():
+	IA = IAPlayer(Token.YELLOW, "IA")
+
+	board = Board([
+		"       ",
+		"       ",
+		"       ",
+		"       ",
+		"BY B.BB",
+		"YYBBYYB"
+	])
+
+	randomRuns = 0
+
+	def mockRandom(a, b):
+		nonlocal randomRuns
+		randomRuns += 1
+		return 0
+
+	assert IA.play(board, mockRandom, False) == 5
+	assert randomRuns == 0
+
+	board = Board([
+		"       ",
+		"       ",
+		".      ",
+		"BB     ",
+		"BYB    ",
+		"YYBBYYB"
+	])
+
+	randomRuns = 0
+
+	def mockRandom(a, b):
+		nonlocal randomRuns
+		randomRuns += 1
+		return 0
+
+	assert IA.play(board, mockRandom, False) == 1
+	assert randomRuns == 0
