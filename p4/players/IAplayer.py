@@ -41,7 +41,7 @@ class IAPlayer(Player):
 			if detectStrike(board, pos, oppositeToken):
 				return colIndex + 1
 
-		# Ne joue pas à un endroit qui permet à l'adversaire de gagner
+		# Ne joue pas à un endroit qui permet à l'adversaire de gagner, sauf si c'est la seule possibilité
 
 		def filterUnsafe(colIndex):
 			firstEmpty = board.getFirstEmpty(colIndex)
@@ -50,7 +50,9 @@ class IAPlayer(Player):
 				return False
 			return True
 		
-		playable = list(filter(filterUnsafe, playable))
+		result = list(filter(filterUnsafe, playable))
+		if len(result) > 0:
+			playable = result
 
 		# Selection au hasard
 		return playable[randint(0, len(playable) - 1)] + 1

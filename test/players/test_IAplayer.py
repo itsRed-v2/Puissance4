@@ -157,3 +157,27 @@ def test_unsafe():
 
 	assert IA.play(board, mockRandom, False) == 6
 	assert randomRuns == 1
+
+def test_allUnsafe():
+	IA = IAPlayer(Token.BLUE, "IA")
+
+	board = Board([
+		"BBY BYB",
+		"YYY BYY",
+		"YBB-BYB",
+		"BBY.YBY",
+		"BYBBYBB",
+		"YYBBYYB"
+	])
+
+	randomRuns = 0
+
+	def mockRandom(a, b):
+		nonlocal randomRuns
+		randomRuns += 1
+		assert a == 0
+		assert b == 0
+		return 0
+
+	assert IA.play(board, mockRandom, False) == 4
+	assert randomRuns == 1
