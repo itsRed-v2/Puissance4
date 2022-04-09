@@ -14,14 +14,18 @@ from p4.strikeDetector import detectStrike
 
 board = Board()
 
+# Custom sized board
 if len(sys.argv) == 3:
 	h = sys.argv[1]
 	w = sys.argv[2]
 	
 	if h.isdecimal() and w.isdecimal():
 		board = Board(height = int(h), width = int(w))
+# ==
 
 view = View(board)
+
+playing = True
 
 def stopGame():
 	global playing
@@ -29,10 +33,6 @@ def stopGame():
 
 USER = UserPlayer(Token.YELLOW, Color.YELLOW + "Utilisateur", view, stopGame)
 IA = IAPlayer(Token.BLUE, Color.BLUE + "Ordi")
-
-playing = True
-
-# ==== Functions ====
 
 def play(player):
 	answer = player.play(board)
@@ -55,17 +55,14 @@ def play(player):
 
 # ==== Main loop ====
 
-view.displayGame(USER.displayName)
-play(USER)
-
 while playing:
+
+	view.displayGame(USER.displayName)
+	play(USER)
+
+	if not playing: break
 
 	view.displayGame(IA.displayName)
 	if not play(IA):
 		print(Color.RED + "AI played wrong!!")
 		playing = False
-
-	if not playing: break
-
-	view.displayGame(USER.displayName)
-	play(USER)
