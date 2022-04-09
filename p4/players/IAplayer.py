@@ -3,11 +3,15 @@ from time import sleep
 
 from p4.players.player import Player
 
+from p4.strikeDetector import detectStrike
+from p4.utils.vector import Vector
+
 class IAPlayer(Player):
 	def play(self, board, randint = randint, doSleep = True):
 		if doSleep: sleep(.5)
 
 		# Initialisation
+		
 		playable = []
 		for i in range(board.WIDTH):
 			playable.append(i)
@@ -18,8 +22,14 @@ class IAPlayer(Player):
 			firstEmpty = board.getFirstEmpty(colIndex)
 			return firstEmpty != None and firstEmpty != -1
 
-		playable = filter(filterFull, playable)
+		playable = list(filter(filterFull, playable))
+
+		# Joue les coups qui font gagner
+
+		for colIndex in playable:
+			pos = Vector(colIndex, board.getFirstEmpty(colIndex))
+			if detectStrike(board, pos, self.token):
+				return colIndex + 1
 
 		# Selection au hasard
-		playable = list(playable)
 		return playable[randint(0, len(playable) - 1)] + 1
