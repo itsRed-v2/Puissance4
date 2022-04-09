@@ -11,8 +11,10 @@ class IAPlayer(Player):
 	def play(self, board, randint = randint, doSleep = True):
 		if doSleep: sleep(.5)
 
+		oppositeToken = Token.getOpposite(self.token)
+
 		# Initialisation
-		
+
 		playable = []
 		for i in range(board.WIDTH):
 			playable.append(i)
@@ -36,8 +38,19 @@ class IAPlayer(Player):
 
 		for colIndex in playable:
 			pos = Vector(colIndex, board.getFirstEmpty(colIndex))
-			if detectStrike(board, pos, Token.getOpposite(self.token)):
+			if detectStrike(board, pos, oppositeToken):
 				return colIndex + 1
+
+		# Ne joue pas à un endroit qui permet à l'adversaire de gagner
+
+		def filterUnsafe(colIndex):
+			firstEmpty = board.getFirstEmpty(colIndex)
+			pos = Vector(colIndex, firstEmpty - 1)
+			if detectStrike(board, pos, oppositeToken):
+				return False
+			return True
+		
+		playable = list(filter(filterUnsafe, playable))
 
 		# Selection au hasard
 		return playable[randint(0, len(playable) - 1)] + 1
