@@ -27,8 +27,8 @@ def stopGame():
 	global playing
 	playing = False
 
-USER = UserPlayer(Token.YELLOW, Color.YELLOW + "JAUNE", view, stopGame)
-IA = IAPlayer(Token.BLUE, Color.BLUE + "BLEU")
+USER = UserPlayer(Token.YELLOW, Color.YELLOW + "Utilisateur", view, stopGame)
+IA = IAPlayer(Token.BLUE, Color.BLUE + "Ordi")
 
 playing = True
 

@@ -51,13 +51,13 @@ class View:
 			print(line)
 
 	def displayGame(self, playerName):
-		header = f"C'est au tour du joueur {playerName}"
+		header = f"C'est au tour de {playerName}"
 		permFooter = "Entrez \"help\" pour de l'aide"
 		self.display(header, permFooter)
 	
 	def display_win(self, playerName):
 		header = ""
-		permFooter = f"Joueur {playerName} a gagné!"
+		permFooter = f"{playerName} a gagné!"
 		self.display(header, permFooter)
 	
 	def display(self, header, permFooter):
