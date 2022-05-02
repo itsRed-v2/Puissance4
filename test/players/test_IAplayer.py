@@ -69,17 +69,19 @@ def test_win():
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
+		assert a == 0
+		assert b == 0
 		return 0
 
 	assert IA.play(board, mockRandom, False) == 5
-	assert randomRuns == 0
+	assert randomRuns == 1
 
 	board = Board([
 		"       ",
 		"       ",
-		".      ",
-		"BB     ",
-		"BYB    ",
+		"     . ",
+		" Y  BB ",
+		" Y BYY ",
 		"YYBBYYB"
 	])
 
@@ -88,10 +90,12 @@ def test_win():
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
+		assert a == 0
+		assert b == 0
 		return 0
 
-	assert IA.play(board, mockRandom, False) == 1
-	assert randomRuns == 0
+	assert IA.play(board, mockRandom, False) == 6
+	assert randomRuns == 1
 
 def test_block():
 	IA = IAPlayer(Token.YELLOW, "IA")
@@ -106,33 +110,61 @@ def test_block():
 	])
 
 	randomRuns = 0
-
+	
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
+		assert a == 0
+		assert b == 0
 		return 0
 
 	assert IA.play(board, mockRandom, False) == 5
-	assert randomRuns == 0
+	assert randomRuns == 1
 
 	board = Board([
 		"       ",
 		"       ",
-		".      ",
-		"BB     ",
+		"     . ",
+		"    BB ",
+		" Y BYY ",
+		"YYBBYYB"
+	])
+
+	randomRuns = 0
+	
+	def mockRandom(a, b):
+		nonlocal randomRuns
+		randomRuns += 1
+		assert a == 0
+		assert b == 0
+		return 0
+
+	assert IA.play(board, mockRandom, False) == 6
+	assert randomRuns == 1
+
+def test_unsafeBlock():
+	IA = IAPlayer(Token.BLUE, "IA")
+
+	board = Board([
+		"       ",
+		"       ",
+		" .     ",
+		"xB     ",
 		"BYB    ",
 		"YYBBYYB"
 	])
 
 	randomRuns = 0
-
+	
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
+		assert a == 0
+		assert b == 5
 		return 0
 
-	assert IA.play(board, mockRandom, False) == 1
-	assert randomRuns == 0
+	assert IA.play(board, mockRandom, False) == 2
+	assert randomRuns == 1
 
 def test_unsafe():
 	IA = IAPlayer(Token.BLUE, "IA")
@@ -147,7 +179,7 @@ def test_unsafe():
 	])
 
 	randomRuns = 0
-
+	
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
@@ -171,7 +203,7 @@ def test_allUnsafe():
 	])
 
 	randomRuns = 0
-
+	
 	def mockRandom(a, b):
 		nonlocal randomRuns
 		randomRuns += 1
